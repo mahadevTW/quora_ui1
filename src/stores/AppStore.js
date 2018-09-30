@@ -30,6 +30,22 @@ const store = Reflux.createStore({
     setTimeout(() => {
       this.trigger(triggerObj)
     }, 3000)
+  },
+
+  onLogin(email, password) {
+    console.log("Logging in for user... ", email, password);
+
+    const triggerObj = {
+      action: "login",
+      data: {
+        success: true,
+        user: {
+          name: "Mahesh",
+          surname: "Vyavahare"
+        }
+      }
+    }
+    this.trigger(triggerObj);
   }
 });
 

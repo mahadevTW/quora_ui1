@@ -12,9 +12,13 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      showLoader: true
+      showLoader: true,
+      showLogin: false,
+      isUserLoggedIn: false,
+      currentUser: {}
+
     }
-      this.onAppStore = this.onAppStore.bind(this);
+    this.onAppStore = this.onAppStore.bind(this);
     listenermixin.listenTo(AppStore, this.onAppStore)
   }
 
@@ -23,21 +27,33 @@ class App extends Component {
       console.log("trigger received at parent component...", triggerObj.data);
     }
     if (triggerObj.action === "userClick") {
-      console.log("User clicked...");
+      const newState = this.state;
+      newState.showLogin = true;
+      this.setState(newState)
     }
     if (triggerObj.action === "loadFeeds") {
-      //feeds has been loaded..
       const state = this.state
       state.showLoader = false
       this.setState(state);
+    }
+    if (triggerObj.action === "login") {
+      if (triggerObj.data.success === true) {
+        alert("Login successful.." + triggerObj.data.user.name);
+        console.log(triggerObj.data)
+        const newState = this.state;
+        newState.showLogin = false;
+        newState.isUserLoggedIn = true;
+        newState.currentUser = triggerObj.data.user;
+        this.setState(newState);
+      }
     }
   }
 
   render() {
     return (
       <div className="App">
-        <MyNavbar/>
-        <Body showLoader={this.state.showLoader}/>
+        <MyNavbar isUserLoggedIn={this.state.isUserLoggedIn} currentUser={this.state.currentUser}/>
+        <Body showLoader={this.state.showLoader} showLogin={this.state.showLogin}/>
       </div>
     );
   }
