@@ -20,6 +20,16 @@ const store = Reflux.createStore({
       data: "Some data.."
     }
     this.trigger(triggerObj)
+  },
+  onLoadFeeds() {
+    const triggerObj = {
+      action: "loadFeeds",
+      data: []
+    }
+    console.log("Action received at store...");
+    setTimeout(() => {
+      this.trigger(triggerObj)
+    }, 3000)
   }
 });
 
