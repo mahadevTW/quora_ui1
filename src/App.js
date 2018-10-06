@@ -12,7 +12,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      showLoader: true,
+      showLoader: false,
       showLogin: false,
       isUserLoggedIn: false,
       currentUser: {}
@@ -34,6 +34,11 @@ class App extends Component {
     if (triggerObj.action === "loadFeeds") {
       const state = this.state
       state.showLoader = false
+      this.setState(state);
+    }
+    if (triggerObj.action === "closeModal") {
+      const state = this.state
+      state.showLogin = false
       this.setState(state);
     }
     if (triggerObj.action === "login") {

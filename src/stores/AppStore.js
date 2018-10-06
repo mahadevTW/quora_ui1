@@ -21,6 +21,12 @@ const store = Reflux.createStore({
     }
     this.trigger(triggerObj)
   },
+  onCloseModal() {
+    const triggerObj = {
+      action: "closeModal",
+    }
+    this.trigger(triggerObj)
+  },
   onLoadFeeds() {
     const triggerObj = {
       action: "loadFeeds",
