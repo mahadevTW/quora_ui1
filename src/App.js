@@ -52,6 +52,9 @@ class App extends Component {
         this.setState(newState);
       }
     }
+    if (triggerObj.action === "signup") {
+      alert("Signup " + triggerObj.data.success)
+    }
   }
 
   render() {

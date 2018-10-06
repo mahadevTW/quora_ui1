@@ -5,6 +5,7 @@ const actions = Reflux.createActions([
   "userClick",
   "loadFeeds",
   "login",
-  "closeModal"
+  "closeModal",
+  "signup"
 ])
 export default actions;

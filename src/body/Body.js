@@ -64,14 +64,23 @@ export default class Body extends React.Component {
     const firstName = document.getElementById("first_name").value;
     const lastName = document.getElementById("last_name").value;
     const maleGender = document.getElementById("male").checked;
-    const femaleGender = document.getElementById("female").checked;
     const gender = maleGender ? "male" : "female";
     if (password !== confirmPassword) {
       const state = this.state;
       state.popupError.show = true;
       state.popupError.message = "Password and Confirm password does not match";
       this.setState(state);
+      return;
     }
+    const user = {
+      username,
+      password,
+      firstName,
+      lastName,
+      gender,
+    };
+    AppActions.signup(user)
+
   }
 
   onModalClose() {
